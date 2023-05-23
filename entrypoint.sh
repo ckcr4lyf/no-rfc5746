@@ -1,11 +1,11 @@
 #!/bin/sh
 
-node server.mjs &
+node /app/server.mjs &
 sleep 1
 
 if [ "$STRACE" = "true" ]
 then
-    strace -e trace=openat,read node client.mjs
+    strace -e trace=openat,read node /app/client.mjs
 else
-    node client.mjs
+    node /app/client.mjs
 fi
