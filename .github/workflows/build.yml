@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: node-sslconf-poc
+  IMAGE_NAME: ckcr4lyf/node-sslconf-poc
 
 jobs:
   build-and-push-image:
