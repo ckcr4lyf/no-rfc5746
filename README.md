@@ -34,7 +34,7 @@ curl: (35) OpenSSL/3.0.8: error:0A000152:SSL routines::unsafe legacy renegotiati
 
 <details>
 
-<summary> Example with oenssl s_client (OpenSSL 3.0.8 7 Feb 2023) </summary>
+<summary> Example with openssl s_client (OpenSSL 3.0.8 7 Feb 2023) </summary>
 
 ```
 $ openssl s_client -connect 127.0.0.1:4433
