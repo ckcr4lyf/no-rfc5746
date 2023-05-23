@@ -8,6 +8,6 @@ COPY . .
 
 COPY openssl.cnf /etc/ssl/openssl.cnf
 
-RUN chmod +x ./entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
-CMD [ "./entrypoint.sh" ]
+CMD [ "/app/entrypoint.sh" ]
