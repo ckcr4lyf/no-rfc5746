@@ -1,4 +1,4 @@
-name: Node.JS pass example
+name: Node.JS fail example
 
 on: [push]
 
@@ -16,5 +16,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: node server.mjs &
-    - run: curl -v https://127.0.0.1:4433
-    - run: openssl s_client -connect 127.0.0.1:4433
+    - name: Test with cURL
+      continue-on-error: true
+      run: curl -v https://127.0.0.1:4433
+    - name: Test with OpenSSL
+      continue-on-error: true
+      run: openssl s_client -connect 127.0.0.1:4433
