@@ -6,6 +6,6 @@ c.on('error', e => {
     console.log(e);
     process.exit(-1);
 })
-await new Promise(r => setTimeout(r, 5000));
+await new Promise(r => setTimeout(r, 1000));
 console.log('Success');
 process.exit(0);
