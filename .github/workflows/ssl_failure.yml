@@ -1,4 +1,4 @@
-name: Node.JS fail example
+name: Failure examples from "normal" clients
 
 on: [push]
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -23,4 +23,5 @@ jobs:
       continue-on-error: true
       run: openssl s_client -connect 127.0.0.1:4433
     - name: Test with NodeJS
+      continue-on-error: true
       run: node client.mjs

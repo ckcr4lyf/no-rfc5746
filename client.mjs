@@ -1,7 +1,7 @@
 // try and make TLS connection to socket
 import tls from 'tls';
 const c = tls.connect('4433', '127.0.0.1');
-c.enableTrace();
+// c.enableTrace();
 c.on('error', e => {
     console.log(e);
     process.exit(-1);
