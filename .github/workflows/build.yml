@@ -49,7 +49,6 @@ jobs:
       - name: Run the image without any env (expect success)
         uses: docker://ghcr.io/ckcr4lyf/node-sslconf-poc:master
 
-    steps:
       - name: Run the image without EXTRA CA CERTS (expect failure)
         uses: docker://ghcr.io/ckcr4lyf/node-sslconf-poc:master
         env:
