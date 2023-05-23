@@ -1,4 +1,6 @@
-FROM node:18
+ARG VERSION=18
+
+FROM node:$VERSION
 
 RUN apt-get update && apt-get -y install strace
 
