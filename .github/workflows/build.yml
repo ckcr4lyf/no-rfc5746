@@ -136,7 +136,7 @@ jobs:
 
   patched-node:
     runs-on: ubuntu-latest
-    needs: build-and-push-node-20-debian
+    needs: build-and-push-patched-node
     name: Test on Patched Node
 
     steps:
