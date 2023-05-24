@@ -1,6 +1,4 @@
-ARG VERSION=18
-
-FROM node:$VERSION
+FROM ghcr.io/ckcr4lyf/node-openssl-config-patch:latest
 
 WORKDIR /app
 
