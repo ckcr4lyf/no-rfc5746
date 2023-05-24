@@ -89,13 +89,6 @@ jobs:
         env:
           NODE_EXTRA_CA_CERTS: /etc/ssl/certs/ca-certificates.crt
 
-      - name: Run the image with EXTRA CA CERTS w/ strace (expect failure)
-        continue-on-error: true
-        uses: docker://ghcr.io/ckcr4lyf/node-sslconf-poc-node18:master
-        env:
-          NODE_EXTRA_CA_CERTS: /etc/ssl/certs/ca-certificates.crt
-          STRACE: true
-
   node-20-debian:
     runs-on: ubuntu-latest
     needs: build-and-push-node-20-debian
@@ -110,10 +103,4 @@ jobs:
         uses: docker://ghcr.io/ckcr4lyf/node-sslconf-poc-node20:master
         env:
           NODE_EXTRA_CA_CERTS: /etc/ssl/certs/ca-certificates.crt     
-
-      - name: Run the image with EXTRA CA CERTS w/ strace (expect failure)
-        continue-on-error: true
-        uses: docker://ghcr.io/ckcr4lyf/node-sslconf-poc-node20:master
-        env:
-          NODE_EXTRA_CA_CERTS: /etc/ssl/certs/ca-certificates.crt
-          STRACE: true               
+           
