@@ -38,8 +38,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-        env:
-          VERSION: 18
+          build-args: VERSION=18.16
 
   build-and-push-node-20-2-debian:
     runs-on: ubuntu-latest
@@ -71,8 +70,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-        env:
-          VERSION: 20.2
+          build-args: VERSION=20.2
 
   build-and-push-node-20-3-debian:
     runs-on: ubuntu-latest
@@ -104,8 +102,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-        env:
-          VERSION: 20.3
+          build-args: VERSION=20.3
 
   build-and-push-patched-node:
     runs-on: ubuntu-latest
