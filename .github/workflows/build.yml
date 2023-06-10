@@ -41,7 +41,7 @@ jobs:
         env:
           VERSION: 18
 
-  build-and-push-node-20-debian:
+  build-and-push-node-20.2-debian:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -62,7 +62,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/ckcr4lyf/node-sslconf-poc-node20
+          images: ghcr.io/ckcr4lyf/node-sslconf-poc-node20.2
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
@@ -72,7 +72,40 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
         env:
-          VERSION: 20
+          VERSION: 20.2
+
+  build-and-push-node-20.3-debian:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/ckcr4lyf/node-sslconf-poc-node20.3
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+        env:
+          VERSION: 20.3
 
   build-and-push-patched-node:
     runs-on: ubuntu-latest
@@ -120,19 +153,33 @@ jobs:
         env:
           NODE_EXTRA_CA_CERTS: /dev/null
 
-  node-20-debian:
+  node-20.2-debian:
     runs-on: ubuntu-latest
-    needs: build-and-push-node-20-debian
-    name: Test on Node 20 (Debian)
+    needs: build-and-push-node-20.2-debian
+    name: Test on Node 20.2 (Debian)
 
     steps:
       - name: Run the image without any env (expect success)
-        uses: docker://ghcr.io/ckcr4lyf/node-sslconf-poc-node20:master
+        uses: docker://ghcr.io/ckcr4lyf/node-sslconf-poc-node20.2:master
 
       - name: Run the image with EXTRA CA CERTS (expect failure)
-        uses: docker://ghcr.io/ckcr4lyf/node-sslconf-poc-node20:master
+        uses: docker://ghcr.io/ckcr4lyf/node-sslconf-poc-node20.2:master
         env:
           NODE_EXTRA_CA_CERTS: /dev/null
+
+  node-20.3-debian:
+    runs-on: ubuntu-latest
+    needs: build-and-push-node-20.3-debian
+    name: Test on Node 20.3 (Debian)
+
+    steps:
+      - name: Run the image without any env (expect success)
+        uses: docker://ghcr.io/ckcr4lyf/node-sslconf-poc-node20.3:master
+
+      - name: Run the image with EXTRA CA CERTS (expect success! v20.3.0+ contains fix!)
+        uses: docker://ghcr.io/ckcr4lyf/node-sslconf-poc-node20.3:master
+        env:
+          NODE_EXTRA_CA_CERTS: /dev/null          
 
   patched-node:
     runs-on: ubuntu-latest
