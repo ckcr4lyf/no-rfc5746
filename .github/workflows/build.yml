@@ -153,7 +153,7 @@ jobs:
         env:
           NODE_EXTRA_CA_CERTS: /dev/null
 
-  node-20.2-debian:
+  node-20-2-debian:
     runs-on: ubuntu-latest
     needs: build-and-push-node-20-2-debian
     name: Test on Node 20.2 (Debian)
@@ -167,7 +167,7 @@ jobs:
         env:
           NODE_EXTRA_CA_CERTS: /dev/null
 
-  node-20.3-debian:
+  node-20-3-debian:
     runs-on: ubuntu-latest
     needs: build-and-push-node-20-3-debian
     name: Test on Node 20.3 (Debian)
