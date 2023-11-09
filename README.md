@@ -4,12 +4,15 @@ Just a simple TLS server which does not support secure renegotiation (https://ww
 
 This is useful to test TLS clients which need to be able to connect to such servers, as newer TLS libraries (such as OpenSSLv3) may return an error by default.
 
+The purpose was to illustrate a bug in NodeJS: https://github.com/nodejs/node/issues/48143
 
 ## Usage
 
 Just run the server via `node server.mjs` , and then try to connect to it via a TLS client.
 
 By default, this would fail on OpenSSL >3 , and it is OK on OpenSSL 1.1.1
+
+If you want to access a public instance, I host it at: "https://rfc5746.mywaifu.best:4433" . If the service seems to be down please open an issue.
 
 <details>
 
